@@ -1,46 +1,64 @@
-import {MEMBERSHIP_PROMPT_CLASSNAME, MEMBERSHIP_PROMPT_ID, METERED_CONTENT_CLASSNAME} from './constants';
+/**
+ * File: utils.js
+ * Project: medium-unlocker
+ * File Created: 23 Dec 2021 11:12:59
+ * Author: und3fined (me@und3fined.com)
+ * -----
+ * Last Modified: 14 Jan 2022 19:34:35
+ * Modified By: und3fined (me@und3fined.com)
+ * -----
+ * Copyright (c) 2021 und3fined.com
+ */
+const uIdPattern = '0123456789abcdef';
+const sIdPattern = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._/';
 
-export function log(...messages) {
-  if (process.env.NODE_ENV === 'production') {
-    return;
+function generateId(length, characters) {
+  let result = '';
+  let charsLen = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charsLen));
   }
-  console.log(...messages);
+
+  return result;
 }
 
-export function init() {
-  chrome.runtime.setUninstallURL('https://manojvivek.typeform.com/to/c0VaBs');
+exports.generateUID = () => {
+  return `lo_${generateId(12, uIdPattern)}`;
 }
 
-export function urlWithoutQueryParams(url) {
-  if (!url) {
-    return '';
+exports.generateSID = () => {
+  return `1:${generateId(64, sIdPattern)}`
+}
+
+exports.getBeforeSendExtraInfoSpec = () => {
+  const extraInfoSpec = ["blocking", "requestHeaders"];
+  if (
+    chrome.webRequest.OnBeforeSendHeadersOptions.hasOwnProperty("EXTRA_HEADERS")
+  ) {
+    extraInfoSpec.push("extraHeaders");
   }
-  return url.split('?')[0];
+  return extraInfoSpec;
 }
 
-function hasMembershipPromptNew(document) {
-  const article = document.getElementsByTagName('article')[0];
-  if (!article) {
-    return false;
+exports.getHeaderReceivedExtraInfoSpec = () => {
+  const extraInfoSpec = ["blocking", "responseHeaders"];
+  if (
+    chrome.webRequest.OnHeadersReceivedOptions.hasOwnProperty("EXTRA_HEADERS")
+  ) {
+    extraInfoSpec.push("extraHeaders");
   }
-  const computedStyles = (document.defaultView || window).getComputedStyle(article.nextSibling);
-  if (!computedStyles.background) {
-    return false;
-  }
-  return computedStyles.background.indexOf('linear-gradient') > -1;
+
+  return extraInfoSpec;
 }
 
-export function hasMembershipPrompt(document) {
-  return (
-    document.getElementById(MEMBERSHIP_PROMPT_ID) ||
-    hasMembershipPromptNew(document)
-  );
+exports.getHeaders = (headers, headerName, condition) => {
+  return headers.filter(({ name }) => condition(name.toLowerCase(), headerName));
 }
 
-export function getTwitterReferer() {
-  return `https://t.co/${Math.random().toString(36).slice(2)}`;
+exports.hasElm = (elm) => {
+  return !!document.getElementById(elm);
 }
 
-export function getMeteredContentElement(doc) {
-  return (doc || document).getElementsByClassName(METERED_CONTENT_CLASSNAME)[0];
+exports.getRealObjectKey = (obj, key) => {
+  return Object.keys(obj).find(name => name.toLowerCase() === key)
 }

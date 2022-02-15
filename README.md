@@ -1,31 +1,35 @@
-# Medium Unlimited   [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Yay!!%20I%20found%20this%20open%20source%20chrome%20extension%20to%20read%20Medium.com%20membership%20articles%20for%20free!%20%0ACheck%20it%20out%20-%20&url=https://github.com/manojVivek/medium-unlimited&hashtags=medium,membership,free,github,oss,opensource)
+# Medium Unlocker [![Actions Status](https://github.com/und3fined/medium-unlocker/workflows/build/badge.svg)](https://github.com/und3fined/medium-unlocker/actions)  [![GiveMeACoffee](https://img.shields.io/badge/Give%20Me%20a%20Coffee!-Paypal-blue)](https://paypal.me/und3fined)
+
+<p align="center">
+  <a href="https://addons.mozilla.org/firefox/addon/medium-unlocker" target="_blank">
+    <img width="149" height="48" src="https://github.com/und3fined/medium-unlocker/blob/main/badges/Firefox.png?raw=true">
+  </a>
+  <a href="https://chrome.google.com/webstore/detail/heikhhbkgpfclbhidmjebagbmnkcmkfk" target="_blank">
+    <img width="178" height="48" src="https://github.com/und3fined/medium-unlocker/blob/main/badges/Chrome.png?raw=true">
+  </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/medium-unlocker/fdnjgkpbbjgmolfhobejeoglagepngpe" target="_blank">
+    <img width="186" height="48" src="https://github.com/und3fined/medium-unlocker/blob/main/badges/Edge.png?raw=true">
+  </a>
+</p>
+
+Read Medium content without limit! Aka replacer for Medium Unlimited.
 
 
-Code repository for the browser extension to unlock the articles behind the medium.com membership paywall.
+### Get more information
 
-Try the production version of the extension here: 
+Please visit [Wiki page](https://github.com/und3fined/medium-unlocker/wiki)
 
-For Chrome: https://manojvivek.github.io/medium-unlimited/download/
+### Features
 
-For Firefox: https://addons.mozilla.org/en-US/firefox/addon/medium-unlimited-read-for-free
+- Unlock graphql version of medium.com
+
+### F.A.Q
+
+- Q: How to report bug?/How to add more domain?
+
+Create new issue
 
 
+### Screenshot
 
-# Development
-
-Run the following to build the code:
-
-```
-npm run dev         #For local development
-#or
-npm run build       #For production release
-```
-
-This will generate the bundle and other required files in ./dist directory.
-
-Load the generated chrome extension in chrome by `Kebab menu(⋮) -> More Tools -> Extensions` and then click on `LOAD UNPACKED` and select the dist folder.
-Chrome extension is loaded and ready to use.
-
-# A Prune Build.
-# A Prune Build.
-# A Prune Build.
+![Github](https://user-images.githubusercontent.com/2163878/147834338-dc43fa34-a850-4e28-9b6b-c9c28bc8bfdf.png)
